@@ -1,18 +1,15 @@
 import * as tf from "@tensorflow/tfjs"
 import * as tmPose from "@teachablemachine/pose"
 
-function TMModelLoad() {
+// Takes path to model.json and path to metadata.json as props. 
+function TMModelLoad(props) {
 
+    const {path_to_model, path_to_metadata} = props;
 
+    init(path_to_model, path_to_metadata)
+    
     return (
-        <div id='upload-files-div'>
-            Model <br />
-            <input type="file" name="Model" id="load-model" /> <br /><br />
-            Weights <br />
-            <input type="file" name="Weights" id="load-weights" /> <br /><br />
-            Metadata <br />
-            <input type="file" name="Metadata" id="load-metadata" /> <br /> <br />
-            <button id="upload-button" onClick={init}>Load Model</button>
+        <div id='model-div'>
             <canvas id="canvas"></canvas>
             <div id="label-container"></div>
         </div>
@@ -21,18 +18,18 @@ function TMModelLoad() {
 
 let model, webcam, ctx, labelContainer, maxPredictions;
 
-async function init(){
-    
-    const loadModel = document.getElementById('load-model');
-    const loadWeights = document.getElementById('load-weights');
-    const loadMetadata = document.getElementById('load-metadata');
 
-    model = await tmPose.loadFromFiles(
-        loadModel.files[0],
-        loadWeights.files[0],
-        loadMetadata.files[0]
+async function init(path_to_model, path_to_metadata){
+    
+    // Loads model.json and metadata.json.
+    model = await tmPose.load(
+        path_to_model,
+        path_to_metadata
     )
+
     maxPredictions = model.getTotalClasses();
+    
+
     const width = window.innerWidth;
     const height = window.innerHeight;
     //const size = 200;
