@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './TextArea.css';
 
 const TextArea = () => {
   const [value, setValue] = useState('');
@@ -49,11 +50,14 @@ const TextArea = () => {
       />
       <br/>
       <button onClick={handleClick}>Send Text</button>
-      <div>
-          <br />
-          <label>Summary:</label>
-          <p>{summary}</p>
-      </div>
+      {
+        summary ?
+        <div className="summary-container">
+            <label>Summary:</label>
+            <p>{summary}</p>
+        </div>
+        : null
+      }
     </div>
   );
 }
