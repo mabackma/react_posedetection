@@ -1,5 +1,6 @@
 import { useState } from "react";
 import TMModelLoad from "./TMModelLoad";
+import TextArea from "./TextArea";
 
 function SelectModel(){
     
@@ -17,6 +18,7 @@ function SelectModel(){
         <div id="select-model-buttons-div">
             <button id="model1-button" onClick={handleClickModel1Button}>Load Model 1</button>
             {showModel1 && <TMModelLoad path_to_model={path_to_model1} path_to_metadata={path_to_metadata1}/>}
+            <TextArea/>
         </div>
     )
 }
