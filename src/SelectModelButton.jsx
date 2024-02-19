@@ -1,8 +1,10 @@
 import { useState } from "react";
 import TMModelLoad from "./TMModelLoad";
-import TextArea from "./TextArea";
 
-function SelectModel(){
+// Takes model id as parameter
+function SelectModelButton(model){
+    
+    const {model_id} = model;
     
     const [showModel, setShowModel] = useState(false);
     const handleClickModelButton = () => {
@@ -22,12 +24,11 @@ function SelectModel(){
 
 
     return (
-        <div id="select-model-buttons-div">
-            <button id="model1-button" onClick={handleClickModelButton}>Load Model 1</button>
-            {showModel && <TMModelLoad path_to_model={get_path_to_model(2)} path_to_metadata={get_path_to_metadata(2)}/>}
-            <TextArea/>
+        <div id="select-model-button-div">
+            <button id="model-button" onClick={handleClickModelButton}>Load Model {model_id}</button>
+            {showModel && <TMModelLoad path_to_model={get_path_to_model(model_id)} path_to_metadata={get_path_to_metadata(model_id)}/>}         
         </div>
     )
 }
 
-export default SelectModel
+export default SelectModelButton
