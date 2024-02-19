@@ -37,7 +37,7 @@ const TextArea = () => {
     });
 
     // Send a POST request to the translate address
-    fetch('http://127.0.0.1:5000/translate-to-finnish', {
+    fetch('http://127.0.0.1:5000/translate-in-google', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
